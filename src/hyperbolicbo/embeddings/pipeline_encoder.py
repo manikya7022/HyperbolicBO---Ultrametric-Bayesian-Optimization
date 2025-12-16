@@ -236,7 +236,8 @@ class PipelineEncoder:
                 rotation = torch.tensor([
                     [np.cos(angle_offset), -np.sin(angle_offset)],
                     [np.sin(angle_offset), np.cos(angle_offset)]
-                ])
+                ], dtype=torch.float32)
+                base_emb = base_emb.float()  # Ensure float32
                 base_emb[:2] = rotation @ base_emb[:2]
             
             # Scale to appropriate depth
